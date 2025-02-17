@@ -121,7 +121,7 @@ Primero en caso de que $\alpha \neq 0$ en los $v_j(x,y) \in J_0^v$ se procede a 
 
 %Como calcular b_j
 \begin{itemize}
-    \item \textbf{ $v_j(x,y) \in J_!^v$ \ref{J_0_lambda_pos_level_inferior}}:
+    \item \textbf{ $v_j(x,y) \in J_1^v$ \ref{J_0_lambda_pos_level_inferior}}:
         \begin{equation}
             \vec{b_j}=  \frac{{\alpha} \cdot (-\nabla_{y}{v_j(z_{est})}^T \cdot \alpha)}{\|\mathbf{\alpha} \|_2^2}
         \end{equation}
@@ -151,6 +151,7 @@ $$\begin{array}{rcll} \alpha \nabla_y v_{j}^{\star}(z_{est})&=&0,& j\in J_1^v,\\
 % Explicar que se hace el punto factible en las restricciones
 De forma análoga se agregan constantes  $c_i^g$  a las restricciones del líder,  teniéndose que para $$g_{i}^{\star}(x,y)=g_{i}(x,y)+c_i^g,$$ se cumple
 
+$$\begin{array}{rcll} 
 $$\begin{array}{rcll} 
   g_{i}^{\star}(z_{est})&=&0,& j\in J_0^g,\\  g_{i}^{\star}(z_{est})&<&0,& j\in \{1, \ldots, q\}\setminus J_0^g.\end{array}$$
 
@@ -526,33 +527,33 @@ El sistema permite la generación automática de puntos aleatorios y del vector 
 establecidos por defecto en $[0,1]$, y ofrece la exportación de los problemas generados en formato Excel. 
 La documentación técnica y guías de usuario se encuentran en desarrollo activo en los repositorios oficiales del proyecto.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Graphics/front_streamlitpng.png}
-    \caption{Pantalla principal de generación del problema}
-    \label{fig:front_generator_page}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Graphics/Ejemplo_introducir_follower_rest.png}
-    \caption{Ejemplo de generación de problema en punto Fuertemente Estacionario}
-    \label{fig:example_strong_stationary_front_generator}
-\end{figure}
-
-% Añadir video demo 
-\begin{figure}[H]
-    \centering
-    \includemedia[
-  width=0.8\linewidth,
-  height=0.5\linewidth,
-  activate=pageopen,
-  addresource=Graphics/visual_tesis_example.mp4,
-  flashvars={
-    source=demo_front.mp4
-    &loop=true
-    &scaleMode=letterbox
-  }
-]{}{VPlayer.swf}
-\caption{Demostración en Vídeo de la Aplicación Gráfica}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{Graphics/front_streamlitpng.png}
+%    \caption{Pantalla principal de generación del problema}
+%    \label{fig:front_generator_page}
+%\end{figure}
+%
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{Graphics/Ejemplo_introducir_follower_rest.png}
+%    \caption{Ejemplo de generación de problema en punto Fuertemente Estacionario}
+%    \label{fig:example_strong_stationary_front_generator}
+%\end{figure}
+%
+%% Añadir video demo 
+%\begin{figure}[H]
+%    \centering
+%    \includemedia[
+%  width=0.8\linewidth,
+%  height=0.5\linewidth,
+%  activate=pageopen,
+%  addresource=Graphics/visual_tesis_example.mp4,
+%  flashvars={
+%    source=demo_front.mp4
+%    &loop=true
+%    &scaleMode=letterbox
+%  }
+%]{}{VPlayer.swf}
+%\caption{Demostración en Vídeo de la Aplicación Gráfica}
+%\end{figure}

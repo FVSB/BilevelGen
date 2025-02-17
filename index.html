@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            position: relative;
+            background: #2c2c2c;
+            color: white;
+            padding: 50px;
+            max-width: 800px;
+            margin: 50px auto;
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+        }
+        .title {
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .title::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: white;
+            margin: 10px auto;
+        }
+        .problem {
+            display: flex;
+            align-items: flex-start;
+            margin: 30px 0;
+        }
+        .number {
+            font-size: 50px;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        .text {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">PROBLEM</div>
+        <div class="problem">
+            <div class="number">1</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+        </div>
+        <div class="problem">
+            <div class="number">2</div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+        </div>
+    </div>
+</body>
+</html>

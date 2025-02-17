@@ -1,0 +1,138 @@
+\documentclass[10pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amsbsy, amsthm, amsmath, amssymb, amsfonts, bbm, mathrsfs, mathtools} % math
+% Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{booktabs} 
+\usepackage[most]{tcolorbox}  
+\usepackage{utopia} %font utopia imported
+\usetheme{Berlin}
+\usecolortheme{dolphin}
+% set colors
+\definecolor{myNewColorA}{RGB}{126,12,110}
+\definecolor{myNewColorB}{RGB}{165,85,154}
+\definecolor{myNewColorC}{RGB}{203,158,197}
+\definecolor{myNewColorD}{RGB}{255,192,192}
+\definecolor{myNewColorE}{RGB}{29, 113, 81}
+\definecolor{myNewColorF}{RGB}{245, 245, 239}
+\setbeamercolor*{palette primary}{bg=myNewColorE}
+\setbeamercolor*{palette secondary}{bg=myNewColorD, fg = white}
+\setbeamercolor*{palette tertiary}{bg=myNewColorE, fg = myNewColorD}
+\setbeamercolor*{titlelike}{fg=myNewColorE}
+\setbeamercolor*{title}{bg=myNewColorE, fg = myNewColorD}
+\setbeamercolor*{item}{fg=myNewColorD}
+\setbeamercolor*{caption name}{fg=myNewColorE}
+\usefonttheme{professionalfonts}
+\usepackage{natbib}
+\usepackage{hyperref}
+%------------------------------------------------------------
+%\titlegraphic{%\includegraphics[height=1.5cm]{nku-logo.eps}}
+\setbeamerfont{title}{size=\large}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{author}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{institute}{size=\small}
+\title[University of La Habana]{Un Generador de Problemas Prueba para Optimización Binivel}
+%\subtitle{The Top Forwards in the World}
+\author[Francisco Vicente Suárez Bellón]{Francisco Vicente Suárez Bellón\\[10mm]{\small Tutora: Dra. C. Gemayqzel Bouza Allende }}
+\date{Febrero, 2025}
+%------------------------------------------------------------
+
+\begin{document}
+
+% The next statement creates the title page.
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Contenido}
+\tableofcontents
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCCIÓN
+%----------------------------------------------------------------------------------------
+\section{Introducción}
+\begin{frame}
+\frametitle{Introducción}
+La optimización binivel es un área fundamental en investigación operativa y teoría de juegos. Este trabajo propone:
+\begin{itemize}
+    \item Un generador de problemas binivel cuyos puntos estacionarios tienen propiedades específicas.
+    \item Evaluar algoritmos MPEC (Mathematical Programs with Equilibrium Constraints).
+\end{itemize}
+El problema general se define como:
+\begin{equation*}
+\min_{x} F(x, y) \quad \text{s.a.} \quad x \in T, \quad y \in S(x),
+\end{equation*}
+donde $S(x)$ es el conjunto de soluciones óptimas del problema del nivel inferior.
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	MARCO TEÓRICO
+%----------------------------------------------------------------------------------------
+\section{Marco Teórico}
+\begin{frame}
+\frametitle{Transformación KKT}
+Reemplazando el problema del nivel inferior por sus condiciones KKT:
+\begin{align*}
+\min_{x, y, \lambda_j} & \quad F(x, y) \\
+\text{s.a.} & \quad g_i(x, y) \leq 0, \quad i = 1, \dots, q, \\
+& \quad \nabla_y f(x, y) + \sum_{j=1}^s \nabla_y v_j(x, y) \lambda_j = 0, \\
+& \quad v_j(x, y) \leq 0, \quad j = 1, \dots, s, \\
+& \quad \lambda_j \geq 0, \quad j = 1, \dots, s, \\
+& \quad v_j(x, y) \lambda_j = 0, \quad j = 1, \dots, s.
+\end{align*}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	METODOLOGÍA
+%----------------------------------------------------------------------------------------
+\section{Metodología}
+\begin{frame}
+\frametitle{Fases del Proceso}
+\begin{enumerate}
+    \item Obtención de puntos mínimos iniciales.
+    \item Modificación de problemas originales para garantizar estacionariedad.
+    \item Evaluación de algoritmos en problemas modificados.
+\end{enumerate}
+Métodos de reformulación:
+\begin{itemize}
+    \item \textbf{Big-M}: Introduce variables binarias.
+    \item \textbf{SOS1}: Utiliza conjuntos especiales ordenados.
+    \item \textbf{ProductMode}: Aproxima restricciones de complementariedad.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	RESULTADOS EXPERIMENTALES
+%----------------------------------------------------------------------------------------
+\section{Resultados Experimentales}
+\begin{frame}
+\frametitle{Experimentación}
+\begin{itemize}
+    \item Problemas lineales: Mejora en algunos casos con Big-M.
+    \item Problemas cuadráticos: Comportamiento similar entre métodos.
+    \item Problemas no convexos: Coincidencia de variables del nivel superior en puntos óptimos.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	CONCLUSIONES
+%----------------------------------------------------------------------------------------
+\section{Conclusiones y Trabajo Futuro}
+\begin{frame}
+\frametitle{Conclusiones}
+\begin{itemize}
+    \item El generador permite evaluar el desempeño de algoritmos en problemas específicos.
+    \item Los problemas no convexos presentan mayores desafíos estructurales.
+\end{itemize}
+Trabajo futuro:
+\begin{itemize}
+    \item Ampliar la experimentación a más categorías de problemas.
+    \item Investigar criterios de parada basados en puntos estacionarios.
+    \item Desarrollar una interfaz gráfica más intuitiva.
+\end{itemize}
+\end{frame}
+
+\end{document}

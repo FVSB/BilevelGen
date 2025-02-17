@@ -1,0 +1,173 @@
+---
+title: "Un generador de problemas prueba para evaluar la calidad de la solución de los algoritmos de problemas de optimización de dos niveles"
+author: "Francisco Vicente Suárez Bellón"
+format: 
+  revealjs:
+    theme: simple
+    slide-number: true
+    width: 1280
+    height: 720
+---
+
+## Introducción
+
+- **Contexto**:  
+  Los problemas de optimización binivel son fundamentales en áreas como la investigación operativa, la teoría de juegos y el aprendizaje automático.  
+  - Son desafiantes debido a su naturaleza jerárquica y no convexa.  
+
+- **Motivación**:  
+  - Es difícil garantizar soluciones óptimas globales en problemas binivel.  
+  - Necesidad de herramientas para evaluar el rendimiento de algoritmos en problemas específicos.  
+
+- **Objetivo**:  
+  - Desarrollar un generador de problemas binivel con puntos estacionarios controlados para evaluar algoritmos de optimización.
+
+---
+
+## Estructura del Problema Binivel
+
+**Definición formal**:  
+$$
+\min_{x} F(x, y) \quad \text{sujeto a: } \quad y \in \arg\min_y \{f(x, y) \mid v_j(x, y) \leq 0, j = 1, \dots, s\}.
+$$
+
+**Características**:  
+- Dos niveles jerárquicos: líder (nivel superior) y seguidor (nivel inferior).  
+- Interdependencia entre las decisiones del líder y el seguidor.  
+
+---
+
+# Aplicaciones de la optimización Binivel:
+
+---
+
+## En el Mercados Eléctricos
+
+- **Multi-leader disjoint-follower game: formulation as a bilevel optimization problem (2018). Preprint 2018-10, TU Bergakademie Freiberg, Fakultät für Mathematik und Informatik**.
+
+-  **Some remarks about existence of equilibria, and the validity of the EPCC reformulation for multi-leader-follower games. J. Nonlinear Convex Anal. 19(7), 1141–1162 (2018)**.
+
+- **Nash equilibrium in a pay-as-bid electricity market: Part 2—best response of a producer. Optimization 66, 1027–1053 (2017)**.
+.
+
+ <!-- Empezar EPI -->
+---
+
+## En Parques Ecoindustriales
+
+
+
+- **Ramos, M.A., Boix, M., Aussel, D., Montastruc, L., Domenech, S. (2016a). Optimal design of water exchanges in eco-industrial parks through a game theory approach**.
+- **Ramos, M.A., Rocafull, M., Boix, M., Aussel, D., Montastruc, L., Domenech, S. (2018). Utility network optimization in eco-industrial parks by a multi-leader follower game methodology**.
+- **Gu, H., Li, Y., Yu, J., Wu, C., Song, T., Xu, J. (2020). Bi-level optimal low-carbon economic dispatch for an industrial park with consideration of multi-energy price incentives**.
+
+<!-- Empezar Machine Learning -->
+---
+
+## En Machine Learning
+
+
+
+- **(Springer Optimization and Its Applications 161) Stephan Dempe, Alain Zemkoho - Bilevel Optimization_ Advances and Next Challenges-Springer International Publishing_Springer (2020).pdf - Capítulo 6: Bilevel Optimization of Regularization Hyperparameters in Machine Learning**
+.
+---
+## Los biniveles son díficles: 
+
+Dado que los problemas de optimización binivel son inherentemente difíciles de resolver debido a su naturaleza 
+- NP-hard:  **Stephan Dempe, Alain Zemkoho (2020). *Bilevel Optimization: Advances and Next Challenges*. Springer Optimization and Its Applications 161**. 
+
+-  ΣP2-hard: **Martina Cerulli (2016). *Bilevel Optimization and Applications*. Tesis Doctoral, Universidad de Pisa**. 
+ <!-- Continuar los bilevels son dificiles-->
+---
+
+- Algoritmos metaheurísticos, como los evolutivos, han ganado relevancia al proporcionar aproximaciones eficientes en casos no lineales o no convexos: **A Review on Bilevel Optimization: From Classical to Evolutionary Approaches and Applications**. 
+- Dividir el problema en subproblemas más manejables que pueden resolverse iterativamente: **A Collection of Test Problems for Constrained Global Optimization Algorithms**. 
+- Problemas escalabilidad: **Stephan Dempe, Alain Zemkoho (2020). *Bilevel Optimization: Advances and Next Challenges*. Springer Optimization and Its Applications 161**.
+<!-- MPEC -->
+
+
+
+
+---
+
+## Enfoque KKT
+
+- **Transformación del problema**:  
+  - Reemplazar el problema del nivel inferior por las condiciones de Karush-Kuhn-Tucker (KKT).  
+  - Resultado: Un problema MPEC (Mathematical Program with Equilibrium Constraints).  
+
+**Restricciones de complementariedad**:  
+$$
+G_j(z) \geq 0, H_j(z) \geq 0, G_j(z)H_j(z) = 0.
+$$
+
+**Tipos de puntos estacionarios**:  
+- Fuertemente estacionario, M-estacionario, C-estacionario.
+
+---
+
+## Contribución Principal
+
+- **Generador de problemas**:  
+  - Permite crear problemas binivel con puntos estacionarios específicos (controlados).  
+  - Facilita la evaluación del rendimiento de algoritmos en problemas con características conocidas.  
+
+**Ventajas**:  
+- Control sobre el tipo de punto estacionario ($ \alpha = 0 $ o $ \alpha \neq 0 $).  
+- Flexibilidad para generar problemas lineales, cuadráticos y no convexos.  
+
+---
+
+## Metodología
+
+**Pasos del generador**:  
+1. Entrada: Punto inicial y tipo de estacionariedad deseada.  
+2. Modificación del problema original para cumplir con las condiciones requeridas.  
+3. Validación de factibilidad y estacionariedad.  
+
+**Herramientas utilizadas**:  
+- Lenguaje de programación Julia.  
+- Bibliotecas: JuMP, BilevelJuMP, Symbolics, LinearAlgebra.  
+
+---
+
+## Experimentación
+
+- **Problemas seleccionados**:  
+  - Lineales, cuadráticos y no convexos.  
+  - Ejemplos extraídos de la literatura especializada.  
+
+- **Métodos evaluados**:  
+  - Big-M, SOS1, ProductMode.  
+
+- **Resultados clave**:  
+  - Mejora en algunos casos respecto al punto inicial.  
+  - Dificultades en problemas no convexos.  
+  - Tendencia a encontrar óptimos locales cercanos al punto estacionario inicial.  
+
+---
+
+## Conclusiones
+
+- **Logros alcanzados**:  
+  - Desarrollo de un algoritmo eficiente para generar problemas binivel con puntos estacionarios controlados.  
+  - Evaluación del desempeño de algoritmos en problemas específicos.  
+
+- **Contribución práctica**:  
+  - Herramienta útil para investigadores en optimización binivel.  
+
+- **Trabajo futuro**:  
+  - Ampliar la experimentación a más problemas.  
+  - Desarrollar interfaces gráficas para facilitar el uso del generador.  
+
+---
+
+## Agradecimientos
+
+- **Tutora**: Dra. Gemayqzel Bouza Allende.  
+- **Familiares y amigos**: Por su apoyo incondicional.  
+- **Comunidad científica**: Por sus contribuciones y orientaciones.  
+
+---
+
+## ¿Preguntas?
