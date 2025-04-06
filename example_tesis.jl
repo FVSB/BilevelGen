@@ -10,7 +10,7 @@ model=GeneratorModel()
 @myvariables Lower(model) y_1,y_2
 # Declarar la funcion objetivo del nivel superior
 # Min de ((x_1^2)*(y_1^2)*(y_2))+x_2
-SetObjectiveFunction(Upper(model),(log(x_1)*(x_1^2)*(y_1^2)*(y_2))+x_2)
+SetObjectiveFunction(Upper(model),(sin(x_1)*(x_1^2)*(y_1^2)*(y_2))+x_2+ )
 # Ejemplo de restriccion del nivel superior
 SetLeaderRestriction(model,x_1+y_2-y_1>9,J_0_g,0.3)
 # Declarar la funcion objetivo del nivel inferior
