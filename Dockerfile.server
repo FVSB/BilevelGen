@@ -1,0 +1,20 @@
+FROM julia:1.10-bookworm
+
+WORKDIR /app
+
+# Instalar curl para el healthcheck
+RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
+
+# Instalar dependencias Julia (cacheable)
+COPY install_dependecies.jl .
+RUN julia install_dependecies.jl
+
+# Copiar código del servidor
+COPY def_problem/ def_problem/
+
+# Crear directorio de respuestas
+RUN mkdir -p response
+
+EXPOSE 8080
+
+CMD ["julia", "def_problem/api.jl", "--ip", "0.0.0.0", "--port", "8080"]

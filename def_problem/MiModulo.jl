@@ -2,7 +2,6 @@
 using Symbolics
 include("model.jl")
 #module MiModulo
-include("model.jl")
 include("solver.jl")
 using Symbolics
 
@@ -111,12 +110,10 @@ function CreateProblem(model::OptimizationModel)::Tuple{Optimization_Problem,Vec
 
 
     opt_problem = Fix_Restrictions(leader_obj_str, leader_restrictions, follower_obj_str, follower_restrictions, point, leader_vars, follower_vars, _alpha, is_alpha_null)
-    println(opt_problem)
     if is_alpha_null
         _alpha=zeros(length(follower_vars))
     end
     BF_Vector = Make_BF(opt_problem, leader_vars, follower_vars, _alpha)
-    println(BF_Vector)
 
     return (opt_problem, BF_Vector)
 

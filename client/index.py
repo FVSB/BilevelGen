@@ -5,10 +5,13 @@ import os
 from enum import Enum,auto
 import random
 import uuid
-import requests 
+import requests
 import pandas as pd
 from io import BytesIO
 from utils import *
+
+API_URL = os.environ.get("API_URL", "http://127.0.0.1:8080/generate")
+
 def get_guid():
     # Generar un GUID
     nuevo_guid = uuid.uuid4()
@@ -22,21 +25,6 @@ class PointTypes(Enum):
 
     def __str__(self):
         return self.name
-#class ActiveIndex(Enum):
-#    Normal=auto()
-#    
-#    def __str__(self):
-#        return f"{self.name}"
-#
-#class LeaderActiveIndex(ActiveIndex):
-#    J_G_0=auto()
-#    
-#class FollowerActiveIndex(ActiveIndex):
-#    J_0_LP_v=auto()
-#    J_0_L0_v=auto()
-#    J_Ne_L0_v=auto()
-    
-    
 
 
 
@@ -611,7 +599,7 @@ class Page:
                 try:
                     problem_data = self.generate_problem_json()
                     response = requests.post(
-                        "http://127.0.0.1:8080/generate",
+                        API_URL,
                         json=problem_data,
                         headers={"Content-Type": "application/json"}
                     )

@@ -37,7 +37,6 @@ function extract_data_from_leader_restriction(leader_restrictions::Vector{Restri
         push!(vect_miu, _miu)
     end
     #Devolver el dataframe de las restricciones del lider
-    println("Se va a crear el DataFrame")
     return DataFrame(
         Expression=vec_expr,
         Function_Evaluation=vec_value,
@@ -141,32 +140,24 @@ Dado un opt_problem y el vector BF se crea el dataframe a serializar
 retorna un Vector en este orden [objt_df,leader_rest_df,follower_rest_df,point_df,bf_df,BF_df,_alpha_df]
 """
 function create_dataframe(opt_problem::Optimization_Problem,_alpha::Vector, BF::Vector,x_s_vars::Vector,y_vars_Vector)
-println("Guardar funciones objetivos")
     # Crear Dataframe con las Funciones del Nivel Superior e inf
-objt_df=create_dataframe_obj_functions(opt_problem)
-# Crear df de restricciones nivel Superior
-println("extraer data del lider")
-leader_rest_df=extract_data_from_leader_restriction(opt_problem.leader_restrictions)
-# Crear df de restricciones del nivel inferior
-println("Extraer data de la restriccion")
-follower_rest_df=extract_data_from_follower_restriction(opt_problem.follower_restrictions)
-# Crear Dataframe del punto
-println("Guardar el punto")
-point_df=create_dataframe_point(opt_problem,x_s_vars::Vector,y_vars_Vector)
-# Crear el DataFrame_de_bf
-tt=typeof(opt_problem.bf)
-println("El tipo de bf es $tt")
-_bf::Vector{String}=Num_to_String.(opt_problem.bf)
-bf_df=DataFrame(vec_bf=_bf)
-# Crear el Dataframe de BF
-_BF::Vector{String}=Num_to_String.(BF)
-BF_df=DataFrame(vec_BF=_BF)
-# Crear DataFrame de alpha
-println("Crear dataframe de alpha")
-_alpha::Vector{Number}=_alpha
-_alpha_df=DataFrame(vec_alpha=_alpha)
-println("Se va a devolver el array")
-return [objt_df,leader_rest_df,follower_rest_df,point_df,bf_df,BF_df,_alpha_df]
+    objt_df=create_dataframe_obj_functions(opt_problem)
+    # Crear df de restricciones nivel Superior
+    leader_rest_df=extract_data_from_leader_restriction(opt_problem.leader_restrictions)
+    # Crear df de restricciones del nivel inferior
+    follower_rest_df=extract_data_from_follower_restriction(opt_problem.follower_restrictions)
+    # Crear Dataframe del punto
+    point_df=create_dataframe_point(opt_problem,x_s_vars::Vector,y_vars_Vector)
+    # Crear el DataFrame_de_bf
+    _bf::Vector{String}=Num_to_String.(opt_problem.bf)
+    bf_df=DataFrame(vec_bf=_bf)
+    # Crear el Dataframe de BF
+    _BF::Vector{String}=Num_to_String.(BF)
+    BF_df=DataFrame(vec_BF=_BF)
+    # Crear DataFrame de alpha
+    _alpha::Vector{Number}=_alpha
+    _alpha_df=DataFrame(vec_alpha=_alpha)
+    return [objt_df,leader_rest_df,follower_rest_df,point_df,bf_df,BF_df,_alpha_df]
 end
 
 """
@@ -210,9 +201,7 @@ end
 # caso contrario false no lo es
 function serialize_Experiment(opt_problem::Optimization_Problem,_alpha::Vector, BF::Vector,x_s_vars::Vector,y_vars_Vector::Vector,experiment_name::String,is_alpha_zero::Bool)
 # Mandar a hacer los dfs
-    println("Va a entrar a los DataFrames")
     dfs=create_dataframe(opt_problem,_alpha,BF,x_s_vars,y_vars_Vector)
-    println("se va a serializar")
     # Ahora mandar a serializar
     file_name=experiment_name * "generator_alpha_non_zero"
     if is_alpha_zero

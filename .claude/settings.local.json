@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(julia --version:*)",
+      "Bash(julia:*)"
+    ]
+  }
+}

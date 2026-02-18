@@ -1,0 +1,31 @@
+services:
+  julia-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - "8080:8080"
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=8080
+      - RESPONSE_PATH=response/test__
+    volumes:
+      - ./response:/app/response
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/hola"]
+      interval: 15s
+      timeout: 5s
+      retries: 6
+      start_period: 90s
+
+  streamlit-client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://julia-server:8080/generate
+    depends_on:
+      julia-server:
+        condition: service_healthy

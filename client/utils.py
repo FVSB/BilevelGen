@@ -271,7 +271,6 @@ class ProblemShow:
         j=0
         for i in range(count_filas):
             val=df.iloc[i].to_list()[0]
-            print(f"El tipo de val es {type(val)} y es {val}")
             if i<count_x:
                 self.leader_obj+=f" + {val}{self.leader_vars[i]}"
             else:
@@ -288,7 +287,6 @@ class ProblemShow:
         
     def _compute_leader_obj_val(self):
         eval_value=eval_function(self.leader_obj,self.get_all_vars,self.point)
-        print(f"El valor de la funcion del lider es {eval_value}")
         self.leader_obj_value=eval_value
     
     

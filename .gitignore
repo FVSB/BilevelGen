@@ -50,3 +50,24 @@ Readme_me.md
 # Archivos de nodejs
 documentation/node_modules
 tesis.zip
+
+# Archivos generados por el servidor
+response/*.xlsx
+
+# Entornos virtuales Python
+venv/
+linuxVenv/
+new/
+
+# Variables de entorno locales (pueden contener credenciales)
+.env
+client/.env
+
+# Build artifacts
+build/
+client/dist/
+client/build/
+*.spec
+
+# Docker
+.dockerignore

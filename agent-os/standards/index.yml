@@ -1,0 +1,5 @@
+# Agent OS Standards Index
+
+global:
+  tech-stack:
+    description: Julia backend + Python/Streamlit frontend tech stack for bilevel optimization problem generator
